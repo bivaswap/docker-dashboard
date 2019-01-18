@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Image ID</th>
+      <th scope="col">Image Size</th>
+      <th scope="col">Repository</th>
+      <th scope="col">Tags</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for image in images -%}
+          {% for tag in image.attrs['RepoTags'] -%}
+      <tr>
+          <th scope="row">{{ str(image.short_id).split(':')[1] }}</th>
+          <td>{{ sizeof(image.attrs['Size']) }}</td>
+          <td>{{ str(tag).split(':')[0] }}</td>
+          <td>{{ str(tag).split(':')[1] }}</td>
+      </tr>    
+          {% endfor -%}
+{% endfor -%}
+    </tbody>
+</table>
+{% endblock -%}

@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for image in search %}
+{{ image['name'] }}
+{% endfor %}
+{% endblock %}

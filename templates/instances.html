@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Container ID</th>
+      <th scope="col">Image ID</th>
+      <th scope="col">Container Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for x in data -%}
+<tr>      
+    <th scope="row">{{x.short_id}}</th>
+    <td>{{x.image.short_id.encode('utf-8')[7:]}}</td>
+    <td>{{x.name}}</td>
+{% if x.status == 'running' -%}
+    <td><span style="background-color:green">{{x.status}}</span></td>
+{% else -%}
+    <td><span style="background-color:red">{{x.status}}</span></td>
+{% endif -%}
+{% endfor -%}
+    </tbody>
+</table>
+{% endblock %}
